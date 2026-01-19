@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Admin – จัดการจองโต๊ะ</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div class="admin-container">
+  <h1>รายการจอง</h1>
+  <button onclick="clearAll()">ล้างทั้งหมด</button>
+  <div id="orders"></div>
+</div>
+
+<script>
+async function load() {
+  const res = await fetch('/api/list')
+  const data = await res.json()
+  orders.innerHTML = ''
+
+  data.forEach(o => {
+    orders.innerHTML += `
+      <div class="card">
+        <b>${o.name}</b> (${o.phone})<br>
+        ${o.people} คน | ${o.time}<br>
+        <span class="status">${o.status}</span><br>
+        <button onclick="update(${o.id}, 'ยืนยันแล้ว')">ยืนยัน</button>
+        <button onclick="update(${o.id}, 'ยกเลิก')">ยกเลิก</button>
+      </div>
+    `
+  })
+}
+
+async function update(id, status) {
+  await fetch('/api/update', {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({id, status})
+  })
+  load()
+}
+
+async function clearAll() {
+  await fetch('/api/clear')
+  load()
+}
+
+setInterval(load, 2000)
+load()
+</script>
+
+</body>
+</html>

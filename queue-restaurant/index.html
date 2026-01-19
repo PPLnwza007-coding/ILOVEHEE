@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>จองโต๊ะร้านอาหาร</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>จองโต๊ะ</h1>
+
+  <label>ชื่อ</label>
+  <input id="name">
+
+  <label>เบอร์โทร</label>
+  <input id="phone">
+
+  <label>จำนวนคน</label>
+  <select id="people">
+    <option>1</option><option>2</option><option>3</option>
+    <option>4</option><option>5+</option>
+  </select>
+
+  <label>เวลาจอง</label>
+  <input type="time" id="time">
+
+  <button onclick="book()">ยืนยันการจอง</button>
+  <p id="msg"></p>
+</div>
+
+<script>
+async function book() {
+  const data = {
+    name: name.value,
+    phone: phone.value,
+    people: people.value,
+    time: time.value
+  }
+
+  const res = await fetch('/api/book', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify(data)
+  })
+
+  if (res.ok) msg.innerText = 'จองสำเร็จ'
+}
+</script>
+</body>
+</html>

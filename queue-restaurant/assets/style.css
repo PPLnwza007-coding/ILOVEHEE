@@ -1,0 +1,78 @@
+:root {
+  --pink-main: #f7c1d9;
+  --pink-dark: #e75480;
+  --pink-soft: #fde6ef;
+  --gray: #444;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  margin: 0;
+  background: var(--pink-soft);
+  color: var(--gray);
+}
+
+.container {
+  max-width: 420px;
+  margin: 40px auto;
+  background: white;
+  padding: 24px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.1);
+}
+
+h1 {
+  text-align: center;
+  color: var(--pink-dark);
+}
+
+label {
+  display: block;
+  margin-top: 14px;
+  font-weight: 600;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  background: var(--pink-dark);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* ADMIN */
+.admin-container {
+  max-width: 900px;
+  margin: 40px auto;
+}
+
+.card {
+  background: white;
+  padding: 14px;
+  margin-bottom: 12px;
+  border-left: 6px solid var(--pink-main);
+  border-radius: 10px;
+}
+.status {
+  font-weight: bold;
+}
